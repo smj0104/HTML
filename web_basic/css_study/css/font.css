@@ -1,0 +1,41 @@
+  /* @font-face {
+    font-family: 'a';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil3Regular.woff2') format('woff2');
+     font-style: normal;
+                } */
+                
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+                * {
+                    font-family: 'Dongle', sans_serif;
+                    font-size: 30px;
+                    font-weight: 300;
+                    color: 12121288;
+                }        
+        
+                .description {
+                    font-family: 'Dongle', sans_serif;
+                    font-size: 30px;
+                    font-weight: 300;
+                    font-style: italic;
+                    color: bisque;
+                }
+        
+                h1, h2 {
+                    margin: 0;
+                }
+                .main-title {
+                    text-align: center;
+                    line-height: 10px;
+                }
+                .sub-title {
+                    text-align: center;
+                    line-height: 10px;
+                }
+                a {
+                    border: 1px solid goldenrod;
+                    text-decoration: none;
+                    text-shadow: 2px 2px 2px red;
+                }
+                ul {
+                    list-style-type: decimal;
+                }
