@@ -1,0 +1,7 @@
+h2:nth-child(41) {
+    color: red;    
+}
+
+h1:nth-of-type(2) {
+    color: blue;    
+}
