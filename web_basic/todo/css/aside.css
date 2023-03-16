@@ -7,7 +7,7 @@
     width: 300px;
     height: 100%;
     box-shadow: 1px 0px 5px 1px black;
-    background-color: black;   
+    background-color: #454545;   
     transition: left 1s ease;
 }
 
@@ -34,7 +34,7 @@
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
-    right: -10px;
+    right: -13px;
 
     display: flex;
     justify-content: center;
@@ -58,6 +58,7 @@
 
 .fa-calender-check {
     padding: 0px 15px;
+    font-size: 18px;
 }
 
 .header-title {
@@ -78,6 +79,7 @@
     height: 40px;
     background-color: #303030;
 
+    font-size: 16px;
     color: white;
 }
 
