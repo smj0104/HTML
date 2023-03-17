@@ -8,7 +8,7 @@
 }
 
 .container {
-    position:relative;
+    position: relative;
     margin: 50px auto;
     border: 2px solid #dbdbdb;
     width: 600px;
@@ -39,6 +39,7 @@ button:hover {
     background-color: #fafafa;
 }
 
-button:hover {
+button:active {
     background-color: #f0f0f0;
 }
+

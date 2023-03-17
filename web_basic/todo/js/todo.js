@@ -1,5 +1,3 @@
-let todoList = new Array();
-
 class TodoEvent {
     static #instance = null;
     static getInstance() {
@@ -18,14 +16,32 @@ class TodoEvent {
         }
     }
 
-    addEventTodoKeyUp() {
+    addEventAddTodoKeyUp() {
         const todoInput = document.querySelector(".todo-input");
         todoInput.onkeyup = () => {
-            if(window.event.keycode == 13) {
+            if(window.event.keyCode == 13) {
                 const addTodoButton = document.querySelector(".add-todo-button");
                 addTodoButton.click();
             }
         }
+    }
+
+    addEventRemoveTodoClick() {
+        const removeButtons = document.querySelectorAll(".content-footer .remove-button");
+        removeButtons.forEach((removeButton, index) => {
+            removeButton.onclick = () => {
+                ModalService.getInstance().showRemoveModal(index);
+            }
+        });    
+    }
+
+    addEventModifyTodoClick() {
+        const modifyButtons = document.querySelectorAll(".content-footer .modify-button")
+        modifyButtons.forEach((modifyButton, index) => {
+            modifyButton.onclick = () => {
+                ModalService.getInstance().showModifyModal(index);
+            }
+        });
     }
 }
 
@@ -47,22 +63,26 @@ class TodoService {
             this.todoList = JSON.parse(localStorage.getItem("todoList"));
         }
         this.loadTodoList();
+    }
 
+    updateLocalStorage() {
+        localStorage.setItem("todoList", JSON.stringify(this.todoList));
+        this.loadTodoList();
     }
 
     addTodo() {
         const todoInput = document.querySelector(".todo-input");
         const nowDate = new Date();
-        // console.log('년: %{nowDate.getFullYear()}');
-        // console.log('월: %{nowDate.getMonth()}');
-        // console.log('일: %{nowDate.getDate()}');
-        // console.log('요일: %{nowDate.getDay()}');
-        // console.log('시: %{nowDate.getHours()}');
-        // console.log('분: %{nowDate.getMinutes()}');
-        // console.log('초: %{nowDate.getSeconds()}');
+        // console.log(`년: ${nowDate.getFullYear()}`);
+        // console.log(`월: ${nowDate.getMonth()}`);
+        // console.log(`일: ${nowDate.getDate()}`);
+        // console.log(`요일: ${nowDate.getDay()}`);
+        // console.log(`시: ${nowDate.getHours()}`);
+        // console.log(`분: ${nowDate.getMinutes()}`);
+        // console.log(`초: ${nowDate.getSeconds()}`);
 
         const convertDay = (day) => {
-            return day == 0 ? "일"
+            return day == 0 ? "일" 
                 : day == 1 ? "월"
                 : day == 2 ? "화"
                 : day == 3 ? "수"
@@ -76,10 +96,8 @@ class TodoService {
             todoContent: todoInput.value
         }
 
-
         this.todoList.push(todoObj);
-        localStorage.setItem("todoList", JSON.stringify(this.todoList));
-        this.loadTodoList();
+        this.updateLocalStorage();
     }
 
     loadTodoList() {
@@ -88,25 +106,27 @@ class TodoService {
 
         this.todoList.forEach(todoObj => {
             todoContentList.innerHTML += `
-            <li class="content-container">
+                <li class="content-container">
                     <div class="content-header">
                         <div class="todo-date">${todoObj.todoDate}</div>
                         <div class="todo-date-time">${todoObj.todoDateTime}</div>
                     </div>
                     <div class="content-main">
-                    ${todoObj.todoContent}
+                        ${todoObj.todoContent}
                     </div>
                     <div class="content-footer">
                         <button class="modify-button">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </button>
                         <button class="remove-button">
-                            <i class="fa-regular fa-trash-can"></i>                           
+                            <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </div>
                 </li>
             `;
         });
 
+        TodoEvent.getInstance().addEventModifyTodoClick();
+        TodoEvent.getInstance().addEventRemoveTodoClick();
     }
 }

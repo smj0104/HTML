@@ -23,7 +23,7 @@ class AsideEvent {
 
     addEventMainChange() {
         const menuItems = document.querySelectorAll(".menu-items");
-        menuItems.forEach((menuItem,index) => {
+        menuItems.forEach((menuItem, index) => {
             menuItem.onclick = () => {
                 const mainContainers = document.querySelectorAll(".main-container");
                 const menuAside = document.querySelector(".menu-aside");
